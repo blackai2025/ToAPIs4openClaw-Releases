@@ -4,6 +4,13 @@
 
 ---
 
+## 文档 / Docs
+
+- 中文文档入口：[`docs/README.zh-CN.md`](docs/README.zh-CN.md)
+- 部署总览：[`docs/deployment.md`](docs/deployment.md)
+- Telegram 接入：[`docs/channels/telegram.md`](docs/channels/telegram.md)
+- 飞书接入：[`docs/channels/feishu.md`](docs/channels/feishu.md)
+
 ## 中文
 
 ToAPIs for OpenClaw 是基于 [toapis.com](https://toapis.com) 的 OpenClaw AI 网关可视化管理工具。一键部署、配置和管理多个 AI 聊天机器人实例，支持 Telegram、Discord、飞书等平台。
