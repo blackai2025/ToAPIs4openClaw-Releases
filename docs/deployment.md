@@ -89,13 +89,26 @@ chmod +x ./toapis-for-openclaw-linux-x64
 - 检查 `51888` 端口是否被占用
 - 检查本机/服务器防火墙策略
 
-### Q2: openclaw 安装失败
+### Q2: 已手动安装过 openclaw CLI，如何清理？
+
+Windows 下执行以下命令彻底卸载：
+
+```powershell
+npm uninstall -g openclaw
+Remove-Item -Recurse -Force "$env:USERPROFILE\.openclaw" -ErrorAction SilentlyContinue
+```
+
+清理后重新运行 `toapis-for-openclaw-win-x64.exe`，程序会自动安装并管理所需版本。
+
+> 如需确认是否已安装过，可先执行 `npm list -g openclaw` 查看。
+
+### Q4: openclaw 安装失败
 
 - 先确认 Node.js 安装成功
 - Windows 下确认 Git 可用
 - 检查网络可访问 npm 和 Node 下载源
 
-### Q3: 实例启动后无响应
+### Q5: 实例启动后无响应
 
 - 确认实例状态为 Running
 - 重新验证渠道凭证（Verify）
