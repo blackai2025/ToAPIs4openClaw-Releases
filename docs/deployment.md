@@ -27,18 +27,18 @@ Release 包已内置所有运行时依赖，**无需额外安装 Node.js 或 ope
 
 ## 4. 下载与启动
 
-请从 [Releases](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest) 下载对应平台可执行文件：
+请从 [Releases](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest) 下载对应平台离线安装包（`*-offline.zip`）：
 
-- Windows x64: `toapis-for-openclaw-win-x64.exe`
-- macOS ARM: `toapis-for-openclaw-macos-arm64.zip`
-- macOS Intel: `toapis-for-openclaw-macos-x64.zip`
-- Linux x64: `toapis-for-openclaw-linux-x64`
-- Linux ARM64: `toapis-for-openclaw-linux-arm64`
+- Windows x64: `toapis-for-openclaw-win-x64-offline.zip`
+- macOS ARM: `toapis-for-openclaw-macos-arm64-offline.zip`
+- macOS Intel: `toapis-for-openclaw-macos-x64-offline.zip`
+- Linux x64: `toapis-for-openclaw-linux-x64-offline.zip`
+- Linux ARM64: `toapis-for-openclaw-linux-arm64-offline.zip`
 
 ### 4.1 Windows
 
-1. 下载 `toapis-for-openclaw-win-x64.exe`
-2. 右键以管理员身份运行（推荐）
+1. 下载并解压 `toapis-for-openclaw-win-x64-offline.zip`
+2. 运行 `toapis-for-openclaw-win-x64.exe`（推荐右键以管理员身份运行）
 3. 启动后自动打开管理界面
 
 ### 4.2 macOS
@@ -50,6 +50,7 @@ Release 包已内置所有运行时依赖，**无需额外安装 Node.js 或 ope
 ### 4.3 Linux
 
 ```bash
+# 解压后进入目录（以 x64 为例）
 chmod +x ./toapis-for-openclaw-linux-x64
 ./toapis-for-openclaw-linux-x64
 ```
