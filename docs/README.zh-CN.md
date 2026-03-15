@@ -4,10 +4,9 @@
 
 ## 快速入口
 
-- 部署总览（含离线安装、卸载、开机自启）：[`deployment.md`](deployment.md)
+- 部署总览：[`deployment.md`](deployment.md)
 - Telegram 渠道接入：[`channels/telegram.md`](channels/telegram.md)
 - 飞书（Feishu）渠道接入：[`channels/feishu.md`](channels/feishu.md)
-- 离线包结构说明：[`../bundled/README.md`](../bundled/README.md)
 
 ## 适用对象
 
