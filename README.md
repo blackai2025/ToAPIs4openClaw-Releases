@@ -21,70 +21,85 @@ ToAPIs for OpenClaw 是基于 [toapis.com](https://toapis.com) 的 OpenClaw AI �
 
 | 平台 | 架构 | 下载 |
 |------|------|------|
-| **Windows** | x64 | [toapis-for-openclaw-win-x64-offline.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-win-x64-offline.zip) |
-| **macOS** | Apple Silicon (M1/M2/M3/M4) | [toapis-for-openclaw-macos-arm64-offline.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-macos-arm64-offline.zip) |
-| **macOS** | Intel | [toapis-for-openclaw-macos-x64-offline.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-macos-x64-offline.zip) |
-| **Linux** | x64 | [toapis-for-openclaw-linux-x64-offline.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-x64-offline.zip) |
-| **Linux** | ARM64 | [toapis-for-openclaw-linux-arm64-offline.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-arm64-offline.zip) |
+| **Windows** | x64 | [toapis-for-openclaw-win-x64.exe](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-win-x64.exe) |
+| **macOS** | Apple Silicon (M1/M2/M3/M4) | [toapis-for-openclaw-macos-arm64.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-macos-arm64.zip) |
+| **macOS** | Intel | [toapis-for-openclaw-macos-x64.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-macos-x64.zip) |
+| **Linux** | x64 | [toapis-for-openclaw-linux-x64](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-x64) |
+| **Linux** | ARM64 | [toapis-for-openclaw-linux-arm64](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-arm64) |
+
+> **备用下载（百度网盘）**：如果 GitHub 下载较慢，可从 [百度网盘](https://pan.baidu.com/s/1_XVw0R5xE4LUElQPwn81pA?pwd=8kx3)（提取码: `8kx3`）下载。
 
 ### 快速开始
 
 #### Windows
 
-1. 下载并解压 `toapis-for-openclaw-win-x64-offline.zip`
-2. 运行 `toapis-for-openclaw-win-x64.exe`（建议右键 → **以管理员身份运行**），浏览器会自动打开管理页面
+1. 下载 `toapis-for-openclaw-win-x64.exe`
+2. 右键 → **以管理员身份运行**，浏览器会自动打开管理页面
 3. 按照向导填入 [toapis.com](https://toapis.com) API Key，创建第一个实例
 
 #### macOS
 
-1. 下载对应架构的 `*-offline.zip` 并解压
-2. 双击 `start-macos.command` 即可启动（会自动处理系统安全限制）
-3. 浏览器自动打开管理页面
+1. 下载对应架构的 `.zip` 文件并解压
+2. 若提示"无法打开"，在终端执行以下命令移除隔离属性：
+   ```bash
+   xattr -rd com.apple.quarantine ./toapis-for-openclaw-macos-arm64
+   ```
+3. 双击运行，浏览器会自动打开管理页面
 
 #### Linux
 
 ```bash
-# 下载并解压（以 x64 为例）
-wget https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-x64-offline.zip
-unzip toapis-for-openclaw-linux-x64-offline.zip
-cd toapis-for-openclaw-linux-x64
+# 下载（以 x64 为例）
+wget https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-x64
+chmod +x toapis-for-openclaw-linux-x64
 
-# 启动
+# 运行（自动后台运行）
 ./toapis-for-openclaw-linux-x64
+
+# 查看状态
+./toapis-for-openclaw-linux-x64 --status
+
+# 停止
+./toapis-for-openclaw-linux-x64 --stop
 ```
 
 管理页面地址：`http://<服务器IP>:51888`
 
-> 再次运行同一命令不会启动第二个进程，而是直接打开已运行实例的浏览器页面。
+### 常用命令（Linux / macOS）
+
+```bash
+# 前台运行
+./toapis-for-openclaw-linux-x64 --foreground
+
+# 后台运行
+./toapis-for-openclaw-linux-x64 --daemon
+
+# 查看运行状态
+./toapis-for-openclaw-linux-x64 --status
+
+# 停止服务
+./toapis-for-openclaw-linux-x64 --stop
+```
 
 ### 功能特性
 
 - **多平台支持** — Telegram、Discord、飞书一键对接
-- **多模型切换** — 通过 toapis.com 接入多家主流模型，每个实例可独立切换模型
+- **多模型切换** — 通过 toapis.com 接入多家主流模型，每个实例独立配置
 - **可视化管理** — Web UI 管理所有实例，启停、配置一目了然
-- **离线安装** — Release 包已内置 Node.js、openclaw CLI 及 MinGit (Windows)，无需联网即可完成首次部署
 - **自动更新** — 内置 OTA 更新，一键升级到最新版本
-- **开机自启** — 支持设置系统启动时自动运行（macOS / Windows / Linux systemd）
 - **用户审批** — 白名单机制，通过对接码审批授权用户
-- **一键卸载** — Web UI 或命令行 `--uninstall` 即可彻底清理所有组件
-- **国内加速** — 自动使用国内镜像下载 Node.js 和 npm 包
+- **零依赖部署** — 单文件二进制，自动安装 Node.js 和 openclaw
 
 ### 前置条件
 
-Release 包已内置所有运行时依赖（Node.js 22、openclaw CLI），开箱即用，**无需额外安装**。
+首次启动时会**自动检测并安装**以下依赖：
+
+- **Node.js 22+** — 如未安装会自动下载安装
+- **openclaw CLI** — 通过 npm 自动安装，每次启动自动检查更新
 
 需要提前准备：
 
 - [toapis.com](https://toapis.com) 账号及 API Key
-
-### 卸载
-
-```bash
-# 命令行卸载
-./toapis-for-openclaw-linux-x64 --uninstall
-```
-
-也可在 Web 管理界面中点击卸载按钮。Windows 下还可通过"添加或删除程序"卸载。
 
 ---
 
@@ -98,70 +113,69 @@ Get the latest version from [Releases](https://github.com/blackai2025/ToAPIs4ope
 
 | Platform | Arch | Download |
 |----------|------|----------|
-| **Windows** | x64 | [toapis-for-openclaw-win-x64-offline.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-win-x64-offline.zip) |
-| **macOS** | Apple Silicon (M1/M2/M3/M4) | [toapis-for-openclaw-macos-arm64-offline.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-macos-arm64-offline.zip) |
-| **macOS** | Intel | [toapis-for-openclaw-macos-x64-offline.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-macos-x64-offline.zip) |
-| **Linux** | x64 | [toapis-for-openclaw-linux-x64-offline.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-x64-offline.zip) |
-| **Linux** | ARM64 | [toapis-for-openclaw-linux-arm64-offline.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-arm64-offline.zip) |
+| **Windows** | x64 | [toapis-for-openclaw-win-x64.exe](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-win-x64.exe) |
+| **macOS** | Apple Silicon (M1/M2/M3/M4) | [toapis-for-openclaw-macos-arm64.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-macos-arm64.zip) |
+| **macOS** | Intel | [toapis-for-openclaw-macos-x64.zip](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-macos-x64.zip) |
+| **Linux** | x64 | [toapis-for-openclaw-linux-x64](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-x64) |
+| **Linux** | ARM64 | [toapis-for-openclaw-linux-arm64](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-arm64) |
+
+> **Alternative download (Baidu Netdisk)**: If GitHub is slow, download from [Baidu Netdisk](https://pan.baidu.com/s/1_XVw0R5xE4LUElQPwn81pA?pwd=8kx3) (code: `8kx3`).
 
 ### Quick Start
 
 #### Windows
 
-1. Download and extract `toapis-for-openclaw-win-x64-offline.zip`
-2. Run `toapis-for-openclaw-win-x64.exe` (recommended: Right-click → **Run as Administrator**), the browser will open automatically
+1. Download `toapis-for-openclaw-win-x64.exe`
+2. Right-click → **Run as Administrator**, the browser will open automatically
 3. Follow the wizard to enter your [toapis.com](https://toapis.com) API Key and create your first instance
 
 #### macOS
 
-1. Download the `*-offline.zip` for your architecture and extract it
-2. Double-click `start-macos.command` to launch (handles macOS security restrictions automatically)
-3. The browser will open the dashboard automatically
+1. Download the `.zip` for your architecture and extract it
+2. If blocked by macOS, remove the quarantine flag:
+   ```bash
+   xattr -rd com.apple.quarantine ./toapis-for-openclaw-macos-arm64
+   ```
+3. Run the binary, the browser will open automatically
 
 #### Linux
 
 ```bash
-# Download and extract (x64 example)
-wget https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-x64-offline.zip
-unzip toapis-for-openclaw-linux-x64-offline.zip
-cd toapis-for-openclaw-linux-x64
+# Download (x64 example)
+wget https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-x64
+chmod +x toapis-for-openclaw-linux-x64
 
-# Run
+# Run (auto-daemonizes)
 ./toapis-for-openclaw-linux-x64
+
+# Check status
+./toapis-for-openclaw-linux-x64 --status
+
+# Stop
+./toapis-for-openclaw-linux-x64 --stop
 ```
 
 Dashboard URL: `http://<server-ip>:51888`
 
-> Running the command again won't start a second process — it simply opens the browser to the existing instance.
-
 ### Features
 
 - **Multi-platform** — One-click integration with Telegram, Discord, and Feishu (Lark)
-- **Model switching** — Access multiple AI models via toapis.com; switch models on existing instances at any time
+- **Model switching** — Access multiple AI models via toapis.com, configured per instance
 - **Visual management** — Web UI for all instances: start/stop, configure
-- **Offline install** — Release packages bundle Node.js, openclaw CLI, and MinGit (Windows) for fully offline deployment
 - **Auto-update** — Built-in OTA updates, one-click upgrade
-- **Autostart** — Optionally launch on system boot (macOS / Windows / Linux systemd)
 - **User approval** — Whitelist with pairing code authorization
-- **One-click uninstall** — Web UI or `--uninstall` flag to cleanly remove all components
-- **China mirror acceleration** — Automatically uses domestic mirrors for Node.js and npm downloads
+- **Zero-dependency** — Single binary, auto-installs Node.js and openclaw
 
 ### Prerequisites
 
-Release packages include all runtime dependencies (Node.js 22, openclaw CLI) — **no additional installation required**.
+Dependencies are **automatically detected and installed** on first launch:
+
+- **Node.js 22+** — Auto-downloaded if not found
+- **openclaw CLI** — Auto-installed via npm, updated on every startup
 
 You will need:
 
 - A [toapis.com](https://toapis.com) account and API Key
-
-### Uninstall
-
-```bash
-# Command-line uninstall
-./toapis-for-openclaw-linux-x64 --uninstall
-```
-
-You can also uninstall from the Web dashboard. On Windows, use "Add or Remove Programs".
 
 ---
 
@@ -181,6 +195,8 @@ ToAPIs for OpenClaw は [toapis.com](https://toapis.com) を利用した OpenCla
 | **Linux** | x64 | [toapis-for-openclaw-linux-x64](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-x64) |
 | **Linux** | ARM64 | [toapis-for-openclaw-linux-arm64](https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-arm64) |
 
+> **代替ダウンロード（百度网盘）**：GitHub が遅い場合は [百度网盘](https://pan.baidu.com/s/1_XVw0R5xE4LUElQPwn81pA?pwd=8kx3)（提取码: `8kx3`）からダウンロードできます。
+
 ### クイックスタート
 
 #### Windows
@@ -192,8 +208,11 @@ ToAPIs for OpenClaw は [toapis.com](https://toapis.com) を利用した OpenCla
 #### macOS
 
 1. アーキテクチャに対応する `.zip` をダウンロードして解凍
-2. `start-macos.command` をダブルクリックして起動（macOS のセキュリティ制限を自動処理）
-3. ブラウザが自動で管理画面を開きます
+2. macOS にブロックされた場合、隔離属性を解除：
+   ```bash
+   xattr -rd com.apple.quarantine ./toapis-for-openclaw-macos-arm64
+   ```
+3. 実行するとブラウザが自動で開きます
 
 #### Linux
 
@@ -202,42 +221,37 @@ ToAPIs for OpenClaw は [toapis.com](https://toapis.com) を利用した OpenCla
 wget https://github.com/blackai2025/ToAPIs4openClaw-Releases/releases/latest/download/toapis-for-openclaw-linux-x64
 chmod +x toapis-for-openclaw-linux-x64
 
-# 起動
+# 実行（自動でバックグラウンド化）
 ./toapis-for-openclaw-linux-x64
+
+# ステータス確認
+./toapis-for-openclaw-linux-x64 --status
+
+# 停止
+./toapis-for-openclaw-linux-x64 --stop
 ```
 
 管理画面：`http://<サーバーIP>:51888`
 
-> 同じコマンドを再実行しても二重起動せず、既存インスタンスのブラウザページを開きます。
-
 ### 機能
 
 - **マルチプラットフォーム** — Telegram、Discord、Feishu（Lark）にワンクリックで連携
-- **モデル切り替え** — toapis.com 経由で複数の AI モデルに対応、既存インスタンスでもモデルを随時変更可能
+- **モデル切り替え** — toapis.com 経由で複数の AI モデルに対応、インスタンスごとに設定可能
 - **ビジュアル管理** — Web UI で全インスタンスを管理：起動/停止、設定
-- **オフラインインストール** — リリースパッケージに Node.js、openclaw CLI、MinGit（Windows）を同梱、ネットワーク不要で初回デプロイ可能
 - **自動アップデート** — 内蔵 OTA アップデート、ワンクリックで最新版に
-- **自動起動** — システム起動時の自動実行を設定可能（macOS / Windows / Linux systemd）
 - **ユーザー承認** — ペアリングコードによるホワイトリスト管理
-- **ワンクリックアンインストール** — Web UI またはコマンドライン `--uninstall` で全コンポーネントをクリーンに削除
-- **中国国内ミラー加速** — Node.js および npm パッケージのダウンロードに国内ミラーを自動使用
+- **ゼロ依存デプロイ** — 単一バイナリ、Node.js と openclaw を自動インストール
 
 ### 前提条件
 
-リリースパッケージにはすべてのランタイム依存（Node.js 22、openclaw CLI）が同梱されており、**追加インストール不要**です。
+初回起動時に以下を**自動検出・インストール**します：
+
+- **Node.js 22+** — 未インストールの場合は自動ダウンロード
+- **openclaw CLI** — npm 経由で自動インストール、起動時に毎回更新チェック
 
 事前に必要なもの：
 
 - [toapis.com](https://toapis.com) アカウントと API Key
-
-### アンインストール
-
-```bash
-# コマンドラインでアンインストール
-./toapis-for-openclaw-linux-x64 --uninstall
-```
-
-Web 管理画面からもアンインストール可能です。Windows では「アプリと機能」からも削除できます。
 
 ---
 
